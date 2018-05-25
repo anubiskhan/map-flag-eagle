@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_24_214846) do
+ActiveRecord::Schema.define(version: 2018_05_25_003239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,24 @@ ActiveRecord::Schema.define(version: 2018_05_24_214846) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.decimal "total", precision: 10, scale: 2
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "product_orders", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "order_id"
+    t.decimal "price", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_product_orders_on_order_id"
+    t.index ["product_id"], name: "index_product_orders_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -43,4 +61,7 @@ ActiveRecord::Schema.define(version: 2018_05_24_214846) do
   end
 
   add_foreign_key "contacts", "users"
+  add_foreign_key "orders", "users"
+  add_foreign_key "product_orders", "orders"
+  add_foreign_key "product_orders", "products"
 end
