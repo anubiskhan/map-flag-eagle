@@ -11,6 +11,16 @@ describe 'User' do
     expect(page).to have_content('Kelly Schroeder')
     expect(page).to have_link('Log Out')
   end
+  it 'logs out' do
+    stub_omniauth
+
+    visit '/'
+
+    click_on 'Log In'
+    click_on 'Log Out'
+
+    expect(page).to_not have_content('Kelly Schroeder')
+  end
 
   def stub_omniauth
     OmniAuth.config.test_mode = true
