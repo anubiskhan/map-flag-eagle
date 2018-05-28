@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <% if !current_user %>
+      <%= link_to "Log In", google_oauth2_login_path %>
+    <% else %>
+      <%= current_user.name %>
+      <%= link_to "Log Out", logout_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
