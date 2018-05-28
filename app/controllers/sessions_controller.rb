@@ -4,4 +4,9 @@ class SessionsController < ApplicationController
     session[:id] = user.id
     redirect_to '/'
   end
+
+  def destroy
+    reset_session
+    redirect_to '/'
+  end
 end
