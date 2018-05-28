@@ -8,6 +8,8 @@ describe 'User' do
 
     click_on 'Log In'
 
+    expect(page).to have_content('Kelly Schroeder')
+    expect(page).to have_link('Log Out')
   end
 
   def stub_omniauth
