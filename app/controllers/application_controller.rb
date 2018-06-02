@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_map
-    @current_map ||= Map.new(session[:map])
+    @current_map ||= Map.find(session[:map]) if session[:map]
   end
 end
