@@ -25,7 +25,12 @@ ActiveRecord::Schema.define(version: 2018_06_02_194013) do
   end
 
   create_table "maps", force: :cascade do |t|
-    t.text "static_url"
+    t.string "lat"
+    t.string "long"
+    t.string "zoom"
+    t.text "static_url", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
