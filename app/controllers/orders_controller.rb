@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
   def new
-    binding.pry
+    @current_map = current_map
   end
 end
