@@ -58,6 +58,8 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 

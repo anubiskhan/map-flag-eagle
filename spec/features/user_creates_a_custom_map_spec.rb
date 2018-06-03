@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User' do
+describe 'User', js: true do
   it 'creates a custom map' do
     visit maps_new_path
 
@@ -8,7 +8,7 @@ describe 'User' do
 
     click_on 'Use This Map'
 
-    expect(Maps.all.count).to eq(1)
+    expect(Map.all.count).to eq(1)
     expect(current_path).to eq(new_order_path)
   end
 end
