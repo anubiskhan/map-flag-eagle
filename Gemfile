@@ -37,6 +37,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faraday'
 gem 'figaro'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-oauth2', '~> 1.5.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
