@@ -1,1 +1,5 @@
-<img src="<%= @current_map['static_url'] %>" alt="">
+<% if @current_map %>
+  <img src="<%= @current_map['static_url'] %>" alt="">
+<% else %>
+  <h2>You've got to pick a map first!</h2>
+<% end %>
