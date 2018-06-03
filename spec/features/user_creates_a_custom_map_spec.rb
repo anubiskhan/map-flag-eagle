@@ -8,7 +8,7 @@ describe 'User' do
 
     click_on 'Use This Map'
 
-    # expect(Maps.all.count).to eq(1)
+    expect(Maps.all.count).to eq(1)
     expect(current_path).to eq(new_order_path)
   end
 end
