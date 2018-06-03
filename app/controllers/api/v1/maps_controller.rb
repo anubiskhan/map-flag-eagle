@@ -4,8 +4,10 @@ class Api::V1::MapsController < ApplicationController
   def create
     map = Map.create(map_params)
     session[:map] = map.id
-    redirect_to new_order_path
+    map.create_static
+    render js: "window.location = '#{new_order_path}'"
   end
+
   private
 
   def map_params
