@@ -12,6 +12,3 @@ describe 'User' do
     expect(current_path).to eq(new_order_path)
   end
 end
-
-
-# inherit from ActionController::API
