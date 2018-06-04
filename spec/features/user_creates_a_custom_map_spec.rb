@@ -5,8 +5,8 @@ describe 'User', js: true do
     it 'adds a map to the DB' do
       visit maps_new_path
 
-      expect(page).to have_css('#map')
       map_count = Map.all.count
+      
       click_on 'Use This Map'
 
       expect(Map.all.count).to_not eq(map_count)
