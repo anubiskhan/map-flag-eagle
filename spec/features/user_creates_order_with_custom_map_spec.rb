@@ -3,16 +3,21 @@ require 'rails_helper'
 describe 'User' do
   describe 'while looking at static map' do
     it 'decides to order it' do
+      Product.create!(
+        name: 'Custom Map',
+        description: 'Pick the location and zoom of your own map!',
+        price: 39,
+      )
       map = Map.create(lat: 1, long: 1, zoom: 2)
       map.create_static
 
-      visit map_path(map)
+      current_user = create(:user)
 
-      expect(page).to have_css('.flag-image')
+      visit new_order_path
 
-      click_on 'Create Order'
+      click_on 'Order This'
 
-      expect(current_path).to eq(new_order_path)
+      expect(current_path).to eq(cart_path)
     end
   end
 end
