@@ -5,7 +5,7 @@ class Api::V1::MapsController < ApplicationController
     map = Map.create(map_params)
     session[:map] = map.id
     map.create_static
-    render js: "window.location = '#{new_order_path}'"
+    render js: "window.location = '#{maps_path(map['id'])}'"
   end
 
   private

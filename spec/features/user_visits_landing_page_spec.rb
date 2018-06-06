@@ -13,7 +13,7 @@ describe 'User' do
 
       click_on 'Make it your own!'
 
-      expect(current_path).to eq("#{maps_new_path}")
+      expect(current_path).to eq("#{new_map_path}")
     end
   end
 end

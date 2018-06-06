@@ -179,7 +179,7 @@
       zoom: map.getZoom()
     }, function (data) {
       if (data["success"]) {
-        window.location.replace("/orders/new")
+        window.location.replace("<%= new_product_path %>")
       }
     }, 'script');
   };
