@@ -1,10 +1,20 @@
-<% if @current_map %>
-  <img src="<%= @current_map['static_url'] %>" alt="">
-<% else %>
-<h2>You've got to pick a map first!</h2>
-<% end %>
-<%= button_to 'Order This', carts_path(product_id: 1) %>
-<h2>Flag Overlay</h2>
-<div>
-  <img class="flag-image" src="/assets/Colorado-Flag.jpg" alt="">
+<h3>Your map will be the Colorado Flag overlaid on this map</h3>
+<div class="center">
+  <%= button_to 'Order This', carts_path(product_id: 1) %>
+</div>
+<div class="flex-container">
+  <div>
+    <% if current_map %>
+      <img class="map-image" src="<%= current_map['static_url'] %>" alt="">
+    <% else %>
+      <h2>You've got to pick a map first!</h2>
+    <% end %>
+
+  </div>
+  <div class="vertical-center flex-item">
+    <div>
+      <img class="map-image" src="/assets/Colorado-Flag.jpg" alt="">
+    </div>
+    <h2>Flag Overlay</h2>
+  </div>
 </div>

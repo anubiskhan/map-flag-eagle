@@ -1,27 +1,33 @@
-<div>
-  <img class="flag-image" src="/assets/Colorado-Flag.jpg" alt="">
-</div>
-<div>
-  <img class="flag-image" src="<%= current_map['static_url'] %>" alt="">
-</div>
-<% if @cart.product_list.empty? %>
+<h3>Would you like to purchase this custom map?</h3>
+<div class="center">
+  <% if @cart.product_list.empty? %>
     <p><%= link_to "Make a map", new_map_path %></p>
-<% else %>
-  <p>Total: <%= number_to_currency(@cart.total_price) %></p>
-  <%= form_tag orders_path do %>
-  <%= hidden_field_tag "cost", @cart.total_price %>
-  <%= hidden_field_tag "products", @cart.product_list %>
-  <%= hidden_field_tag "map_id", current_map.id %>
-  <article>
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
-    <% end %>
+  <% else %>
+    <p>Total:
+      <%= number_to_currency(@cart.total_price) %></p>
+    <%= form_tag orders_path do %>
+    <%= hidden_field_tag "cost", @cart.total_price %>
+    <%= hidden_field_tag "products", @cart.product_list %>
+    <%= hidden_field_tag "map_id", current_map.id %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
 
-  </article>
+    </article>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>" data-description="A Map Which Cannot Be Believed" data-amount="<%= @cart.total_price * 100 %>" data-locale="auto"></script>
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>" data-description="A Map Which Cannot Be Believed" data-amount="<%= @cart.total_price * 100 %>" data-locale="auto"></script>
 
   <% end %>
 <% end %>
+</div>
+<div class="flex-container">
+<div>
+  <img class="map-image" src="/assets/Colorado-Flag.jpg" alt="">
+</div>
+<div>
+  <img class="map-image" src="<%= current_map['static_url'] %>" alt="">
+</div>
+</div>
