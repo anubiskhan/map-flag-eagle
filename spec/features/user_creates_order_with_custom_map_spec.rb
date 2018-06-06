@@ -9,6 +9,7 @@ describe 'User' do
         price: 39,
       )
       map = Map.create(lat: 1, long: 1, zoom: 2)
+      allow_any_instance_of(ApplicationController).to receive(:current_map).and_return(map)
       map.create_static
 
       current_user = create(:user)
@@ -17,7 +18,7 @@ describe 'User' do
 
       click_on 'Order This'
 
-      expect(current_path).to eq(cart_path)
+      expect(current_path).to eq('/cart')
     end
   end
 end

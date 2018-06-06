@@ -2,20 +2,18 @@ require 'rails_helper'
 
 describe 'User', js: true do
   describe 'creates a custom map' do
-    xit 'adds a map to the DB' do
-      visit maps_new_path
+    it 'adds a map to the DB' do
+      visit new_map_path
 
-      map_count = Map.all.count
+      expect(Map.all.count).to eq(0)
 
       click_on 'Use This Map'
-
-      expected = Map.all.count
-
-      expect(map_count).to_not eq(expected)
-      expect(current_path).to eq(map_path(Map.first))
+      sleep 2
+      expect(Map.all.count).to eq(1)
+      expect(current_path).to eq(new_order_path)
     end
-    xit 'targets the map properly' do
-      visit maps_new_path
+    it 'targets the map properly' do
+      visit new_map_path
 
       fill_in 'address', with: 'spokane'
 
