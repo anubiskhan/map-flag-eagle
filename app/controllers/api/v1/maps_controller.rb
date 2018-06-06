@@ -8,6 +8,10 @@ class Api::V1::MapsController < ApplicationController
     render js: "window.location = '#{new_order_path}'"
   end
 
+  def show
+
+  end
+
   private
 
   def map_params

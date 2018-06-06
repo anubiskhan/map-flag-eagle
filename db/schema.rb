@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_06_044434) do
+ActiveRecord::Schema.define(version: 2018_06_06_065147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2018_06_06_044434) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "map_id"
+    t.index ["map_id"], name: "index_orders_on_map_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -58,8 +60,6 @@ ActiveRecord::Schema.define(version: 2018_06_06_044434) do
     t.decimal "price", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "map_id"
-    t.index ["map_id"], name: "index_products_on_map_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 2018_06_06_044434) do
   end
 
   add_foreign_key "contacts", "users"
+  add_foreign_key "orders", "maps"
   add_foreign_key "orders", "users"
   add_foreign_key "product_orders", "orders"
   add_foreign_key "product_orders", "products"
-  add_foreign_key "products", "maps"
 end

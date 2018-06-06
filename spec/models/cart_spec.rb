@@ -8,7 +8,7 @@ describe Cart do
         cart.add_product(8)
         cart.add_product(6)
 
-        expect(cart.product_list).to eq({'8' => 3, '6' => 5})
+        expect(cart.product_list).to eq({'8' => 1, '6' => 1})
       end
     end
     context '#total_product_count' do
@@ -19,15 +19,12 @@ describe Cart do
       end
     end
     context '#total_price' do
-      it 'makes an active record collection of product objects' do
+      it 'returns the total price of the cart' do
         product_1 = create(:product)
-        product_2 = create(:product)
         cart = Cart.new(nil)
         cart.add_product(product_1.id)
-        cart.add_product(product_1.id)
-        cart.add_product(product_2.id)
 
-        expect(cart.total_price).to eq((product_1.price * 2) + product_2.price)
+        expect(cart.total_price).to eq((product_1.price * 1))
       end
     end
   end

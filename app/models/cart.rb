@@ -5,11 +5,12 @@ class Cart
   end
 
   def add_product(product_id)
-    if product_list.empty? || product_list[product_id.to_s].nil?
-      product_list[product_id.to_s] = 1
-    else
-      product_list[product_id.to_s] += 1
-    end
+    product_list[product_id.to_s] = 1
+    # if product_list.empty? || product_list[product_id.to_s].nil?
+    #   product_list[product_id.to_s] = 1
+    # else
+    #   product_list[product_id.to_s] += 1
+    # end
   end
 
   def total_product_count

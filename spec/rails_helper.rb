@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'support/factory_bot'
 require 'database_cleaner'
+require "selenium/webdriver"
 
 require 'simplecov'
 SimpleCov.start "rails"
@@ -35,10 +36,10 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  config.before(:each, type: :feature) do
-    # Note (Mike Coutermarsh): Make browser huge so that no content is hidden during tests
-    Capybara.current_session.driver.browser.manage.window.resize_to(2_500, 2_500)
-  end
+  # config.before(:each, type: :feature) do
+  #   # Note (Mike Coutermarsh): Make browser huge so that no content is hidden during tests
+  #   Capybara.current_session.driver.browser.manage.window.resize_to(2_500, 2_500)
+  # end
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -85,13 +86,20 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+
+
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-Capybara.javascript_driver = :chrome
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: { args: %w(headless disable-gpu) }
+  )
 
-Capybara.configure do |config|
-  config.default_max_wait_time = 10 # seconds
-  config.default_driver        = :selenium
+  Capybara::Selenium::Driver.new app,
+    browser: :chrome,
+    desired_capabilities: capabilities
 end
+
+Capybara.javascript_driver = :headless_chrome

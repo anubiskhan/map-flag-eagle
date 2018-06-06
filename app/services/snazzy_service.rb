@@ -1,3 +1,0 @@
-class SnazzyService
-  
-end
