@@ -7,7 +7,10 @@ describe User do
     it { should validate_uniqueness_of(:email) }
     it { should validate_presence_of(:role) }
     it { should validate_presence_of(:google_sso_token) }
+  end
+  describe 'relationships' do
     it { should have_many(:contacts) }
+    it { should have_many(:orders) }
   end
   describe 'methods' do
     it '#update_or_create' do
