@@ -12,7 +12,7 @@ describe 'User', js: true do
       expected = Map.all.count
 
       expect(map_count).to_not eq(expected)
-      expect(current_path).to eq("/#{maps_path}/#{Map.first.id}")
+      expect(current_path).to eq("/#{map_path}/#{Map.first.id}")
     end
     xit 'targets the map properly' do
       visit maps_new_path
