@@ -3,6 +3,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
 
   has_many :contacts
+  has_many :orders
 
   def self.update_or_create(auth)
     user = User.find_by(email: auth['info']['email']) || User.new
