@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:show, :create]
   get '/cart', to: 'carts#show'
   resources :maps, only: [:new]
-  resources :orders, only: [:new, :create]
+  resources :orders, only: [:new, :create, :show]
   resources :charges, only: [:new, :create]
   resources :products, only: [:new]
 end
