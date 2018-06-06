@@ -1,9 +1,10 @@
 <% if @current_map %>
   <img src="<%= @current_map['static_url'] %>" alt="">
+  <%= button_to 'Order This', carts_path(accessory_id: @accessory.id) %>
 <% else %>
 <h2>You've got to pick a map first!</h2>
 <% end %>
-<%= button_to 'Order This', carts_path(product_id: 1) %>
+
 <h2>Flag Overlay</h2>
 <div>
   <img class="flag-image" src="/assets/Colorado-Flag.jpg" alt="">
