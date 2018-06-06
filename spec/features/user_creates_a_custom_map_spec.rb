@@ -9,7 +9,9 @@ describe 'User', js: true do
 
       click_on 'Use This Map'
 
-      expect(Map.all.count).to_not eq(map_count)
+      expected = Map.all.count
+
+      expect(map_count).to_not eq(expected)
       expect(current_path).to eq(new_order_path)
     end
     xit 'targets the map properly' do
