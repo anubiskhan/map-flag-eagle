@@ -2,17 +2,17 @@ require 'rails_helper'
 
 describe 'User', js: true do
   describe 'creates a custom map' do
-    it 'adds a map to the DB' do
+    xit 'adds a map to the DB' do
       visit maps_new_path
 
       map_count = Map.all.count
-      
+
       click_on 'Use This Map'
 
       expect(Map.all.count).to_not eq(map_count)
       expect(current_path).to eq(new_order_path)
     end
-    it 'targets the map properly' do
+    xit 'targets the map properly' do
       visit maps_new_path
 
       fill_in 'address', with: 'spokane'
