@@ -1,1 +1,11 @@
-This is some stuff
+<% render file: 'public/404' if current_user.nil? || current_user.id == @order.user_id %>
+<h1><%= current_user['name'] %></h1>
+<h2>Your order from <%= @order.created_at %></h2>
+  <div>
+    <img class="flag-image" src="/assets/Colorado-Flag.jpg" alt="">
+  </div>
+  <div>
+    <img class="flag-image" src="<%= @map['static_url'] %>" alt="">
+  </div>
+
+<h3>Total: <%= number_to_currency(@order.total) %></h3>
