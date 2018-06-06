@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2', as: :google_oauth2_login
   get '/auth/google_oauth2/callback', to: 'sessions#create'
   get :logout, to: 'sessions#destroy'
+  resources :carts, only: [:show, :create]
+  get '/cart', to: 'carts#show'
   resources :maps, only: [:new]
-  resources :orders, only: [:new]
+  resources :orders, only: [:new, :create]
   resources :charges, only: [:new, :create]
   resources :products, only: [:new]
 end
